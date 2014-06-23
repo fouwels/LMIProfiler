@@ -1,0 +1,359 @@
+﻿<Page
+    x:Class="combob.ResultsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:combob"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+	<Grid Margin="24,0,0,0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="80"/>
+			<RowDefinition Height="1*"/>
+		</Grid.RowDefinitions>
+		<TextBlock Grid.Row="0" Text="Results" Style="{StaticResource HeaderTextBlockStyle}" Margin="0,0,0,0"/>
+		<StackPanel Grid.Row="1" x:Name="BasicResults" Visibility="Visible" Margin="0" >
+		<!--<ListView ItemsSource="{Binding Datas.skills}" Grid.Row="1" x:Name="BasicResults" Visibility="Visible" >
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<Grid Height="100" Background="Orange">
+						<TextBlock Text="{Binding soc}" Foreground="White"/>
+					</Grid>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>-->
+		</StackPanel>
+		<StackPanel Grid.Row="1" x:Name="NumericalResults" Visibility="Collapsed">
+			<!-- such good code -->
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Active Learning:" Grid.Column="0"/>
+				<TextBlock x:Name="t0" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Active Listening:" Grid.Column="0"/>
+				<TextBlock x:Name="t1" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Active Complex Problem Solving:" Grid.Column="0"/>
+				<TextBlock x:Name="t2" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Coordination" Grid.Column="0"/>
+				<TextBlock x:Name="t3" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Critical Thinking" Grid.Column="0"/>
+				<TextBlock x:Name="t4" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Equiptment Maintenance:" Grid.Column="0"/>
+				<TextBlock x:Name="t5" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Equiptment Selection" Grid.Column="0"/>
+				<TextBlock x:Name="t6" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Installation" Grid.Column="0"/>
+				<TextBlock x:Name="t7" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Instructing" Grid.Column="0"/>
+				<TextBlock x:Name="t8"
+						   Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Judgement and Decision Making" Grid.Column="0"/>
+				<TextBlock x:Name="t9" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Learning Strategies" Grid.Column="0"/>
+				<TextBlock x:Name="t10" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Management of Financial Resources" Grid.Column="0"/>
+				<TextBlock x:Name="t11" 
+					Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Management of Material Resources" Grid.Column="0"/>
+				<TextBlock x:Name="t12" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Management of Personnel Resources" Grid.Column="0"/>
+				<TextBlock x:Name="t13" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Mathematics" Grid.Column="0"/>
+				<TextBlock x:Name="t14" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Monitoring" Grid.Column="0"/>
+				<TextBlock x:Name="t15" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Negotiation" Grid.Column="0"/>
+				<TextBlock x:Name="t16" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Operation and Control" Grid.Column="0"/>
+				<TextBlock x:Name="t17" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Operation Monitoring" Grid.Column="0"/>
+				<TextBlock x:Name="t18" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Operations Analysis" Grid.Column="0"/>
+				<TextBlock x:Name="t19" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Persuasion" Grid.Column="0"/>
+				<TextBlock x:Name="t20" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Programming" Grid.Column="0"/>
+				<TextBlock x:Name="t21" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Quality Control Analysis" Grid.Column="0"/>
+				<TextBlock x:Name="t22" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Reading Comprehension" Grid.Column="0"/>
+				<TextBlock x:Name="t23" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Repairing" Grid.Column="0"/>
+				<TextBlock x:Name="t24" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Science" Grid.Column="0"/>
+				<TextBlock x:Name="t25" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Service Orientation" Grid.Column="0"/>
+				<TextBlock x:Name="t26" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Social Percentiveness" Grid.Column="0"/>
+				<TextBlock x:Name="t27" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Speaking" Grid.Column="0"/>
+				<TextBlock x:Name="t28" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Systems Analyst" Grid.Column="0"/>
+				<TextBlock x:Name="t29" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Systems Evaluation" Grid.Column="0"/>
+				<TextBlock x:Name="t30" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Technology Design" Grid.Column="0"/>
+				<TextBlock x:Name="t31" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Time Management" Grid.Column="0"/>
+				<TextBlock x:Name="t32" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Troubleshooting" Grid.Column="0"/>
+				<TextBlock x:Name="t33" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Wiring" Grid.Column="0"/>
+				<TextBlock x:Name="t34" 
+				Text="0" Margin="10,0,0,0" Grid.Column="1"/>
+			</Grid>
+		</StackPanel>
+	</Grid>
+	<Page.BottomAppBar>
+		<CommandBar>
+			<CommandBar.PrimaryCommands>
+				<AppBarButton Label="Swap View" Click="UIElement_OnTapped">
+					<AppBarButton.Icon>
+						<PathIcon HorizontalAlignment="Center" VerticalAlignment="Center" Data=""/>
+					</AppBarButton.Icon>
+				</AppBarButton>
+			</CommandBar.PrimaryCommands>
+		</CommandBar>
+	</Page.BottomAppBar>
+</Page>
