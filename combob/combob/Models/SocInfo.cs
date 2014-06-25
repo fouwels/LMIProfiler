@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-public class SocInfo
+﻿public class SocInfo
 {
 	public int soc { get; set; }
 	public string tasks { get; set; }

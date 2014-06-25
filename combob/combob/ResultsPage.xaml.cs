@@ -1,48 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Networking.Sockets;
+﻿// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 using combob.Models.Responses;
 
 namespace combob
 {
 	/// <summary>
-	/// An empty page that can be used on its own or navigated to within a Frame.
+	///     An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
 	public sealed partial class ResultsPage : Page
 	{
 		public ResultsPage()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		/// <summary>
-		/// Invoked when this page is about to be displayed in a Frame.
+		///     Invoked when this page is about to be displayed in a Frame.
 		/// </summary>
-		/// <param name="e">Event data that describes how this page was reached.
-		/// This parameter is typically used to configure the page.</param>
-		protected async override void OnNavigatedTo(NavigationEventArgs e)
+		/// <param name="e">
+		///     Event data that describes how this page was reached.
+		///     This parameter is typically used to configure the page.
+		/// </param>
+		protected override async void OnNavigatedTo(NavigationEventArgs e)
 		{
 			NumericalResults.Visibility = Visibility.Collapsed;
 			BasicResults.Visibility = Visibility.Visible;
 			//NumericalResults.Visibility = Visibility.Visible;
 			//BasicResults.Visibility = Visibility.Collapsed;
 
-			foreach (var x in ((e.Parameter as OptimalResponse).skills).GetRange(0, 1))
+			foreach (Skill x in ((e.Parameter as OptimalResponse).skills).GetRange(0, 1))
 			{
 				var Name = new TextBlock
 				{
@@ -52,56 +40,57 @@ namespace combob
 				var Power = new TextBlock
 				{
 					FontSize = 12,
-					Text = "Confidence: " +  x.prediction
+					Text = "Confidence: " + x.prediction
 				};
 				BasicResults.Children.Add(Name);
 				BasicResults.Children.Add(Power);
 			}
 
-
-			var datas = e.Parameter as Models.Responses.OptimalResponse;
-			t0.Text = datas.optimum[0].ToString();
-			t0.Text = datas.optimum[0].ToString();
-			t1.Text = datas.optimum[1].ToString();
-			t2.Text = datas.optimum[2].ToString();
-			t3.Text = datas.optimum[3].ToString();
-			t4.Text = datas.optimum[4].ToString();
-			t5.Text = datas.optimum[5].ToString();
-			t6.Text = datas.optimum[6].ToString();
-			t7.Text = datas.optimum[7].ToString();
-			t8.Text = datas.optimum[8].ToString();
-			t9.Text = datas.optimum[9].ToString();
-			t10.Text = datas.optimum[10].ToString();
-			t11.Text = datas.optimum[11].ToString();
-			t12.Text = datas.optimum[12].ToString();
-			t13.Text = datas.optimum[13].ToString();
-			t14.Text = datas.optimum[14].ToString();
-			t15.Text = datas.optimum[15].ToString();
-			t16.Text = datas.optimum[16].ToString();
-			t17.Text = datas.optimum[17].ToString();
-			t18.Text = datas.optimum[18].ToString();
-			t19.Text = datas.optimum[19].ToString();
-			t20.Text = datas.optimum[20].ToString();
-			t21.Text = datas.optimum[21].ToString();
-			t22.Text = datas.optimum[22].ToString();
-			t23.Text = datas.optimum[23].ToString();
-			t24.Text = datas.optimum[24].ToString();
-			t25.Text = datas.optimum[25].ToString();
-			t26.Text = datas.optimum[26].ToString();
-			t27.Text = datas.optimum[27].ToString();
-			t28.Text = datas.optimum[28].ToString();
-			t29.Text = datas.optimum[29].ToString();
-			t30.Text = datas.optimum[30].ToString();
-			t31.Text = datas.optimum[31].ToString();
-			t32.Text = datas.optimum[32].ToString();
-			t33.Text = datas.optimum[33].ToString();
-			t34.Text = datas.optimum[34].ToString();
-
+			//oh god
+			var datas = e.Parameter as OptimalResponse;
+			t0.Text = datas.optimum[0];
+			t0.Text = datas.optimum[0];
+			t1.Text = datas.optimum[1];
+			t2.Text = datas.optimum[2];
+			t3.Text = datas.optimum[3];
+			t4.Text = datas.optimum[4];
+			t5.Text = datas.optimum[5];
+			t6.Text = datas.optimum[6];
+			t7.Text = datas.optimum[7];
+			t8.Text = datas.optimum[8];
+			t9.Text = datas.optimum[9];
+			t10.Text = datas.optimum[10];
+			t11.Text = datas.optimum[11];
+			t12.Text = datas.optimum[12];
+			t13.Text = datas.optimum[13];
+			t14.Text = datas.optimum[14];
+			t15.Text = datas.optimum[15];
+			t16.Text = datas.optimum[16];
+			t17.Text = datas.optimum[17];
+			t18.Text = datas.optimum[18];
+			t19.Text = datas.optimum[19];
+			t20.Text = datas.optimum[20];
+			t21.Text = datas.optimum[21];
+			t22.Text = datas.optimum[22];
+			t23.Text = datas.optimum[23];
+			t24.Text = datas.optimum[24];
+			t25.Text = datas.optimum[25];
+			t26.Text = datas.optimum[26];
+			t27.Text = datas.optimum[27];
+			t28.Text = datas.optimum[28];
+			t29.Text = datas.optimum[29];
+			t30.Text = datas.optimum[30];
+			t31.Text = datas.optimum[31];
+			t32.Text = datas.optimum[32];
+			t33.Text = datas.optimum[33];
+			t34.Text = datas.optimum[34];
 		}
 
 		private void UIElement_OnTapped(object sender, RoutedEventArgs routedEventArgs)
 		{
-			NumericalResults.Visibility = NumericalResults.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+			NumericalResults.Visibility = NumericalResults.Visibility == Visibility.Visible
+				? Visibility.Collapsed
+				: Visibility.Visible;
 			BasicResults.Visibility = BasicResults.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
 		}
 	}
