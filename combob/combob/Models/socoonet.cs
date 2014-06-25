@@ -2,7 +2,7 @@
 {
 	public class SocOnet
 	{
-		string soc { get; set; }
-		string onet { get; set; }
+		private string soc { get; set; }
+		private string onet { get; set; }
 	}
 }
