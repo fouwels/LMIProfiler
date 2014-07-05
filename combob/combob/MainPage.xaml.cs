@@ -1,59 +1,53 @@
-﻿using System;
+﻿// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Newtonsoft.Json;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 using combob.Data;
 using combob.Models;
+using combob.Models.Responses;
+using Newtonsoft.Json;
 
 namespace combob
 {
 	/// <summary>
-	/// An empty page that can be used on its own or navigated to within a Frame.
+	///     An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
-
-		private Jobdat _currentJobdat;
-		public Jobdat CurrentJobdat { get { return _currentJobdat; } }
 		public List<Jobdat> JobdatSubmitTray;
 
-		private Dictionary<string, string> onetLookup; 
 		private List<Jobdat> _alJobdatsList;
+		private Jobdat _currentJobdat;
 		private int _currentJobdatsListIndex;
+		private Dictionary<string, string> onetLookup;
+
 		public MainPage()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 			_currentJobdat = new Jobdat();
-			
+
 			Socs.all.Shuffle();
 
-			this.NavigationCacheMode = NavigationCacheMode.Required;
+			NavigationCacheMode = NavigationCacheMode.Required;
 		}
-		protected async override void OnNavigatedTo(NavigationEventArgs e)
+
+		public Jobdat CurrentJobdat
+		{
+			get { return _currentJobdat; }
+		}
+
+		protected override async void OnNavigatedTo(NavigationEventArgs e)
 		{
 			YesButton.IsEnabled = false;
 			NoButton.IsEnabled = false;
 			JobdatSubmitTray = new List<Jobdat>();
 			_alJobdatsList = await GetJobdatsFromExternal();
-			foreach (var jobdat in _alJobdatsList)
+			foreach (Jobdat jobdat in _alJobdatsList)
 			{
 				jobdat.friendlyName = jobdat.onetcode;
 				jobdat.skillsClean = jobdat.scales[0].skills;
@@ -71,41 +65,41 @@ namespace combob
 		private async Task<List<Jobdat>> GetJobdatsFromExternal()
 		{
 			onetLookup = new Dictionary<string, string>();
-			foreach (var soc in Socs.all.GetRange(0, 20)) //ANCHOR char42
+			foreach (string soc in Socs.all.GetRange(0, 20)) //ANCHOR char42
 			{
 				try
 				{
-					var y = JsonConvert.DeserializeObject<Soc2Onet>(await Helpers.HttpGet("http://api.lmiforall.org.uk/api/v1/o-net/soc2onet/" + soc));
+					var y =
+						JsonConvert.DeserializeObject<Soc2Onet>(
+							await Helpers.HttpGet("http://api.lmiforall.org.uk/api/v1/o-net/soc2onet/" + soc));
 					onetLookup.Add(y.onetCodes[0].code, soc);
 				}
 				catch (Exception ex)
 				{
 					//throw;
 				}
-
-				
 			}
-			Debug.WriteLine("onet count: " + onetLookup.Count.ToString());
+			Debug.WriteLine("onet count: " + onetLookup.Count);
 			var jobDats = new List<Jobdat>();
-			foreach (var onet in onetLookup.Keys)
+			foreach (string onet in onetLookup.Keys)
 			{
 				try
 				{
-					var y = JsonConvert.DeserializeObject<Jobdat>(await Helpers.HttpGet("http://api.lmiforall.org.uk/api/v1/o-net/skills/" + onet));
+					var y =
+						JsonConvert.DeserializeObject<Jobdat>(
+							await Helpers.HttpGet("http://api.lmiforall.org.uk/api/v1/o-net/skills/" + onet));
 					if (y.scales.Count > 0)
 					{
-						jobDats.Add(y);	
+						jobDats.Add(y);
 					}
-					
 				}
-				catch (Exception ex )
+				catch (Exception ex)
 				{
 					//throw;
 				}
 			}
-			Debug.WriteLine("jobDat count: " + jobDats.Count.ToString());
+			Debug.WriteLine("jobDat count: " + jobDats.Count);
 			return jobDats;
-
 		}
 
 		private void Yes_OnTapped(object sender, TappedRoutedEventArgs e)
@@ -125,7 +119,7 @@ namespace combob
 		private void IncrementJobdatView()
 		{
 			_currentJobdatsListIndex += 1;
-			Debug.WriteLine("Card left in batch: " + (_alJobdatsList.Count - _currentJobdatsListIndex).ToString());
+			Debug.WriteLine("Card left in batch: " + (_alJobdatsList.Count - _currentJobdatsListIndex));
 			if (_currentJobdatsListIndex > (_alJobdatsList.Count - 1))
 			{
 				//Card.Text = "Out of cards :(";
@@ -138,6 +132,7 @@ namespace combob
 				Card.Text = CurrentJobdat.friendlyName;
 			}
 		}
+
 		private async void SendToRegresser()
 		{
 			//var payload = JobdatSubmitTray.Select(x => x.skillsPreppedForSending).ToList();
@@ -152,9 +147,10 @@ namespace combob
 			//}
 			//HttpGet("http://172.16.169.165:8080/?data=" + payload2);
 
-			var pl = JobdatSubmitTray.Select(jobdat => new List<string>
+			List<List<string>> pl = JobdatSubmitTray.Select(jobdat => new List<string>
 			{
-				jobdat.onetcode, jobdat.acceptionValue.ToString()
+				jobdat.onetcode,
+				jobdat.acceptionValue.ToString()
 			}).ToList();
 
 			string y;
@@ -168,11 +164,9 @@ namespace combob
 				throw;
 			}
 
-			var z = JsonConvert.DeserializeObject<Models.Responses.OptimalResponse>(y);
+			var z = JsonConvert.DeserializeObject<OptimalResponse>(y);
 
-			Frame.Navigate(typeof(ResultsPage), z);
+			Frame.Navigate(typeof (ResultsPage), z);
 		}
 	}
-
 }
-

@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace combob
 {
-	static class Helpers
+	internal static class Helpers
 	{
 		public static void Shuffle<T>(this IList<T> list)
 		{
-			Random rng = new Random();
+			var rng = new Random();
 			int n = list.Count;
 			while (n > 1)
 			{
@@ -24,13 +22,16 @@ namespace combob
 				list[n] = value;
 			}
 		}
+
 		public static async Task<string> GetFriendlyName(string soc)
 		{
-			return JsonConvert.DeserializeObject<SocInfo>(await HttpGet("http://api.lmiforall.org.uk/api/v1/soc/code/" + soc)).title;
+			return
+				JsonConvert.DeserializeObject<SocInfo>(await HttpGet("http://api.lmiforall.org.uk/api/v1/soc/code/" + soc)).title;
 		}
+
 		public static async Task<string> HttpGet(string urlIn)
 		{
-			var request = (HttpWebRequest)WebRequest.Create(urlIn);
+			var request = (HttpWebRequest) WebRequest.Create(urlIn);
 			request.Accept = "application/json";
 
 			WebResponse response = await request.GetResponseAsync();
